@@ -40,8 +40,7 @@ class LinkedList:
             if node.value == val:
                 result.append(node)
             node = node.next
-
-        return result  # здесь будет ваш код
+        return result
 
     def delete(self, val, all=False):
         result = None
@@ -83,4 +82,20 @@ class LinkedList:
         return result_len
 
     def insert(self, afterNode, newNode):
-        pass  # здесь будет ваш код
+        if afterNode is None:
+            if self.head is None:
+                self.head = newNode
+            else:
+                old_head = self.head
+                self.head = newNode
+                self.head.next = old_head
+        else:
+            node = self.head
+            while node is not None:
+                if node.value == afterNode.value:
+                    if node == self.tail:
+                        self.tail = newNode
+                    newNode.next = node.next
+                    node.next = newNode
+                    return
+                node = node.next
