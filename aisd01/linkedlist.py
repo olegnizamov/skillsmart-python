@@ -85,6 +85,8 @@ class LinkedList:
         if afterNode is None:
             if self.head is None:
                 self.head = newNode
+                self.tail = newNode
+
             else:
                 old_head = self.head
                 self.head = newNode
