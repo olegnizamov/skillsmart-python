@@ -65,19 +65,20 @@ class OrderedList:
             self.head = self.head.next
             if self.head is None:
                 self.tail = None
+            else:
+                self.head.prev = None
         else:
             current_node = self.head.next
-            prev_node = self.head
             while current_node is not None:
                 if current_node.value == val:
                     if self.tail == current_node:
-                        self.tail = prev_node
+                        self.tail = self.tail.prev
                         self.tail.next = None
                     else:
-                        prev_node.next = current_node.next
+                        current_node.prev.next = current_node.next
+                        current_node.next.prev = current_node.prev
                     result = current_node
                     break
-                prev_node = current_node
                 current_node = current_node.next
 
         return result
